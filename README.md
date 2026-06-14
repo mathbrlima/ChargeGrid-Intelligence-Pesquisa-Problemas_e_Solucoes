@@ -1,1 +1,1 @@
-# ChargeGrid-Intelligence-Pesquisa-Problemas_e_Solu-es
+# ChargeGrid Intelligence Pesquisa Problemas e Soluções

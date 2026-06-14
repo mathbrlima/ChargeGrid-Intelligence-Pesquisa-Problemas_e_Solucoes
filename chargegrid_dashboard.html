@@ -1,0 +1,296 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem;padding-top:1rem}
+.nav button{padding:5px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:12px;cursor:pointer}
+.nav button.on{background:#1D9E75;border-color:#1D9E75;color:#fff;font-weight:500}
+.sec{display:none}.sec.on{display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:1rem}
+.mc{background:var(--color-background-secondary);border-radius:8px;padding:12px;text-align:center}
+.mc-n{font-size:22px;font-weight:500;color:var(--color-text-primary)}
+.mc-l{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1rem 1.25rem;margin-bottom:1rem}
+.card-t{font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.srow{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.srow label{font-size:12px;color:var(--color-text-secondary);width:110px;flex-shrink:0}
+.srow input{flex:1}
+.srow .v{font-size:12px;font-weight:500;color:var(--color-text-primary);width:48px;text-align:right}
+.res{background:var(--color-background-secondary);border-radius:8px;padding:10px 12px;display:flex;gap:14px;align-items:center;margin-top:4px}
+.res-big{font-size:20px;font-weight:500;color:var(--color-text-primary)}
+.res-det{font-size:11px;color:var(--color-text-secondary);line-height:1.6}
+.hint{background:#E1F5EE;border-radius:8px;padding:8px 12px;font-size:12px;color:#085041;margin-top:8px}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px}
+.b-pico{background:#FCEBEB;color:#791F1F}
+.b-off{background:#E6F1FB;color:#0C447C}
+.b-inter{background:#FAEEDA;color:#633806}
+.b-baixo{background:#E1F5EE;color:#085041}
+.tarrow{width:100%;border-collapse:collapse;font-size:12px}
+.tarrow td{padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary)}
+.tarrow td:last-child{text-align:right}
+.tarrow tr:last-child td{border:none}
+.bar-wrap{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.bar-wrap .bl{font-size:12px;color:var(--color-text-primary);width:90px;flex-shrink:0}
+.bar-track{flex:1;background:var(--color-background-secondary);border-radius:3px;height:7px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px}
+.bar-wrap .bv{font-size:11px;color:var(--color-text-secondary);width:24px;text-align:right}
+.proto{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:6px}
+.proto-item{display:flex;align-items:center;gap:8px;border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:8px 10px}
+.dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.dot-g{background:#1D9E75}.dot-b{background:#378ADD}.dot-a{background:#BA7517}.dot-gr{background:#888780}
+.pinfo strong{display:block;font-size:12px;color:var(--color-text-primary);font-weight:500}
+.pinfo span{font-size:11px;color:var(--color-text-secondary)}
+.pag{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:6px}
+.pag-item{border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:10px;text-align:center}
+.pag-item i{font-size:18px;display:block;margin-bottom:4px}
+.pag-item strong{font-size:12px;font-weight:500;color:var(--color-text-primary);display:block}
+.pag-item span{font-size:10px;color:var(--color-text-secondary)}
+.flow{display:flex;align-items:center;gap:0;margin-top:12px;overflow-x:auto}
+.fstep{text-align:center;min-width:70px}
+.fstep-ico{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 4px}
+.fstep span{font-size:10px;color:var(--color-text-secondary)}
+.fline{flex:1;height:1px;background:var(--color-border-secondary);min-width:8px}
+.kanban{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.col-h{font-size:11px;font-weight:500;padding:5px 8px;border-radius:6px;margin-bottom:6px;display:flex;justify-content:space-between}
+.cbk .col-h{background:#F1EFE8;color:#444441}
+.cdo .col-h{background:#E6F1FB;color:#0C447C}
+.crv .col-h{background:#FAEEDA;color:#633806}
+.cdn .col-h{background:#E1F5EE;color:#085041}
+.kcard{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:6px;padding:8px 10px;margin-bottom:5px;font-size:11px;color:var(--color-text-primary);line-height:1.4}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:8px;margin-top:4px}
+.t-ia{background:#EEEDFE;color:#3C3489}
+.t-in{background:#E6F1FB;color:#0C447C}
+.t-pg{background:#E1F5EE;color:#085041}
+.t-ux{background:#FAEEDA;color:#412402}
+.t-it{background:#FCEBEB;color:#791F1F}
+.demand-bar{height:100px;display:flex;align-items:flex-end;gap:3px;margin-bottom:4px}
+.db{flex:1;border-radius:3px 3px 0 0;min-height:4px}
+.db-label{display:flex;justify-content:space-between;font-size:10px;color:var(--color-text-secondary)}
+.limit-bar{margin-top:12px}
+.limit-track{background:var(--color-background-secondary);border-radius:4px;height:10px;overflow:hidden;margin:4px 0}
+.limit-fill{height:100%;background:#1D9E75;border-radius:4px;width:71%}
+.limit-info{display:flex;justify-content:space-between;font-size:11px;color:var(--color-text-secondary)}
+.ai-btn{width:100%;text-align:left;padding:9px 12px;border:0.5px solid var(--color-border-secondary);border-radius:8px;background:var(--color-background-secondary);color:var(--color-text-primary);font-size:12px;cursor:pointer;margin-bottom:6px}
+</style>
+
+<div>
+<div style="display:flex;align-items:center;gap:10px;padding-top:1rem;margin-bottom:1rem">
+  <div style="width:30px;height:30px;background:#1D9E75;border-radius:7px;display:flex;align-items:center;justify-content:center"><i class="ti ti-bolt" style="font-size:16px;color:#fff" aria-hidden="true"></i></div>
+  <div>
+    <div style="font-size:15px;font-weight:500;color:var(--color-text-primary)">ChargeGrid</div>
+    <div style="font-size:11px;color:var(--color-text-secondary)">Prova de conceito · Sprint 2</div>
+  </div>
+  <div style="margin-left:auto;font-size:11px;color:#0F6E56;background:#E1F5EE;padding:2px 10px;border-radius:10px">Sistema ativo</div>
+</div>
+
+<nav class="nav">
+  <button class="on" onclick="tab('dashboard',this)"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</button>
+  <button onclick="tab('tarifa',this)"><i class="ti ti-currency-dollar" aria-hidden="true"></i> Tarifação</button>
+  <button onclick="tab('demanda',this)"><i class="ti ti-chart-line" aria-hidden="true"></i> Demanda & IA</button>
+  <button onclick="tab('interop',this)"><i class="ti ti-plug" aria-hidden="true"></i> Interoperabilidade</button>
+  <button onclick="tab('kanban',this)"><i class="ti ti-columns" aria-hidden="true"></i> Kanban</button>
+</nav>
+
+<div id="t-dashboard" class="sec on">
+  <div class="cards">
+    <div class="mc"><div class="mc-n" style="color:#1D9E75">12</div><div class="mc-l">Carregadores ativos</div></div>
+    <div class="mc"><div class="mc-n">142 kW</div><div class="mc-l">Demanda atual</div></div>
+    <div class="mc"><div class="mc-n">R$ 1.847</div><div class="mc-l">Receita hoje</div></div>
+    <div class="mc"><div class="mc-n" style="color:#1D9E75">0,9 t</div><div class="mc-l">CO₂ evitado</div></div>
+  </div>
+  <div class="card">
+    <div class="card-t"><i class="ti ti-map-pin" aria-hidden="true"></i> Estações</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:6px">
+      <div style="border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:10px 12px">
+        <div style="font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Bloco A — P1</div>
+        <span class="badge" style="background:#FAEEDA;color:#633806;font-size:11px"><i class="ti ti-bolt" style="font-size:10px"></i> Carregando</span>
+        <div style="font-size:18px;font-weight:500;color:var(--color-text-primary);margin-top:6px">48 <span style="font-size:11px;font-weight:400;color:var(--color-text-secondary)">kW</span></div>
+      </div>
+      <div style="border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:10px 12px">
+        <div style="font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Bloco B — P3</div>
+        <span class="badge" style="background:#E1F5EE;color:#085041;font-size:11px"><i class="ti ti-check" style="font-size:10px"></i> Disponível</span>
+        <div style="font-size:18px;font-weight:500;color:var(--color-text-primary);margin-top:6px">0 <span style="font-size:11px;font-weight:400;color:var(--color-text-secondary)">kW</span></div>
+      </div>
+      <div style="border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:10px 12px">
+        <div style="font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Estac. Mall</div>
+        <span class="badge" style="background:#FAEEDA;color:#633806;font-size:11px"><i class="ti ti-bolt" style="font-size:10px"></i> Carregando</span>
+        <div style="font-size:18px;font-weight:500;color:var(--color-text-primary);margin-top:6px">22 <span style="font-size:11px;font-weight:400;color:var(--color-text-secondary)">kW</span></div>
+      </div>
+      <div style="border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:10px 12px">
+        <div style="font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Via Expressa</div>
+        <span class="badge" style="background:#F1EFE8;color:#444441;font-size:11px"><i class="ti ti-x" style="font-size:10px"></i> Offline</span>
+        <div style="font-size:18px;font-weight:500;color:var(--color-text-secondary);margin-top:6px">— kW</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="t-tarifa" class="sec">
+  <div class="card">
+    <div class="card-t"><i class="ti ti-clock" aria-hidden="true"></i> Tarifas por horário (Time-of-Use)</div>
+    <table class="tarrow">
+      <tr><td>00h–06h · Madrugada</td><td><span class="badge b-baixo">Pico baixo</span></td><td style="color:#085041;font-weight:500">R$ 0,65/kWh</td></tr>
+      <tr><td>06h–12h · Manhã</td><td><span class="badge b-inter">Intermediário</span></td><td style="font-weight:500">R$ 0,82/kWh</td></tr>
+      <tr><td>12h–18h · Tarde</td><td><span class="badge b-pico">Pico alto</span></td><td style="color:#791F1F;font-weight:500">R$ 1,34/kWh</td></tr>
+      <tr><td>18h–22h · Noite</td><td><span class="badge b-inter">Intermediário</span></td><td style="font-weight:500">R$ 1,10/kWh</td></tr>
+      <tr><td>22h–00h · Final</td><td><span class="badge b-off">Off-peak</span></td><td style="font-weight:500">R$ 0,72/kWh</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <div class="card-t"><i class="ti ti-calculator" aria-hidden="true"></i> Simulador de recarga</div>
+    <div class="srow"><label>Bateria atual (%)</label><input type="range" min="5" max="90" step="5" value="20" oninput="calc()"><span class="v" id="vb">20%</span></div>
+    <div class="srow"><label>Meta de carga (%)</label><input type="range" min="30" max="100" step="5" value="80" oninput="calc()"><span class="v" id="vm">80%</span></div>
+    <div class="srow"><label>Capacidade (kWh)</label><input type="range" min="30" max="100" step="5" value="60" oninput="calc()"><span class="v" id="vc">60 kWh</span></div>
+    <div class="srow"><label>Horário de início</label><input type="range" min="0" max="23" step="1" value="14" oninput="calc()"><span class="v" id="vh">14h</span></div>
+    <div class="res">
+      <div><div style="font-size:11px;color:var(--color-text-secondary)">Custo estimado</div><div class="res-big" id="rcusto">R$ 48,24</div></div>
+      <div style="width:1px;background:var(--color-border-tertiary);height:32px"></div>
+      <div class="res-det" id="rdet">36,0 kWh · R$ 1,34/kWh<br>~45 min no carregador 48 kW</div>
+    </div>
+    <div class="hint" id="rhint"><i class="ti ti-bulb" aria-hidden="true"></i> IA sugere: carregue entre 00h–06h e economize R$ 24,84.</div>
+  </div>
+</div>
+
+<div id="t-demanda" class="sec">
+  <div class="card">
+    <div class="card-t"><i class="ti ti-chart-bar" aria-hidden="true"></i> Demanda por hora — hoje</div>
+    <div class="demand-bar" id="dbar"></div>
+    <div class="db-label"><span>00h</span><span>06h</span><span>12h</span><span>18h</span><span>23h</span></div>
+    <div class="limit-bar">
+      <div style="font-size:11px;color:var(--color-text-secondary)">Limite de demanda contratada</div>
+      <div class="limit-track"><div class="limit-fill"></div></div>
+      <div class="limit-info"><span>142 kW usados</span><span>200 kW contratados</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-t"><i class="ti ti-settings-automation" aria-hidden="true"></i> Prioridade de carregamento (smart charging)</div>
+    <div class="bar-wrap"><div class="bl">Frota empresa</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:#1D9E75"></div></div><div class="bv">P1</div></div>
+    <div class="bar-wrap"><div class="bl">Assinantes</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:#378ADD"></div></div><div class="bv">P2</div></div>
+    <div class="bar-wrap"><div class="bl">Avulso</div><div class="bar-track"><div class="bar-fill" style="width:45%;background:#BA7517"></div></div><div class="bv">P3</div></div>
+    <div class="bar-wrap"><div class="bl">Visitantes</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:#888780"></div></div><div class="bv">P4</div></div>
+  </div>
+  <div class="card">
+    <div class="card-t"><i class="ti ti-robot" aria-hidden="true"></i> Perguntas para a IA</div>
+    <button class="ai-btn" onclick="sendPrompt('Qual o melhor horário para carregar meu veículo de 60 kWh na ChargeGrid hoje gastando menos?')">Qual o melhor horário para carregar hoje com menor custo? ↗</button>
+    <button class="ai-btn" onclick="sendPrompt('Como funciona o V2G (Vehicle-to-Grid) na ChargeGrid e quais os benefícios?')">Como funciona o V2G na ChargeGrid? ↗</button>
+    <button class="ai-btn" onclick="sendPrompt('Como o gerenciamento inteligente de demanda da ChargeGrid evita ultrapassagem de demanda contratada?')">Como o sistema evita ultrapassagem de demanda? ↗</button>
+  </div>
+</div>
+
+<div id="t-interop" class="sec">
+  <div class="card">
+    <div class="card-t"><i class="ti ti-plug" aria-hidden="true"></i> Protocolos suportados</div>
+    <div class="proto">
+      <div class="proto-item"><div class="dot dot-g"></div><div class="pinfo"><strong>OCPP 2.0.1</strong><span>Comunicação com carregador</span></div></div>
+      <div class="proto-item"><div class="dot dot-b"></div><div class="pinfo"><strong>OCPI 2.2</strong><span>Roaming entre redes</span></div></div>
+      <div class="proto-item"><div class="dot dot-g"></div><div class="pinfo"><strong>ISO 15118</strong><span>V2G / Plug & Charge</span></div></div>
+      <div class="proto-item"><div class="dot dot-a"></div><div class="pinfo"><strong>OpenADR 2.0</strong><span>Resposta à demanda</span></div></div>
+      <div class="proto-item"><div class="dot dot-b"></div><div class="pinfo"><strong>REST API</strong><span>Integração com terceiros</span></div></div>
+      <div class="proto-item"><div class="dot dot-gr"></div><div class="pinfo"><strong>MQTT</strong><span>IoT / telemetria</span></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-t"><i class="ti ti-credit-card" aria-hidden="true"></i> Métodos de pagamento</div>
+    <div class="pag">
+      <div class="pag-item"><i class="ti ti-qrcode" style="color:#1D9E75" aria-hidden="true"></i><strong>PIX</strong><span>Instantâneo</span></div>
+      <div class="pag-item"><i class="ti ti-credit-card" style="color:#378ADD" aria-hidden="true"></i><strong>Cartão NFC</strong><span>Crédito / débito</span></div>
+      <div class="pag-item"><i class="ti ti-device-mobile" style="color:#534AB7" aria-hidden="true"></i><strong>App</strong><span>Assinatura / avulso</span></div>
+      <div class="pag-item"><i class="ti ti-wifi" style="color:#BA7517" aria-hidden="true"></i><strong>RFID</strong><span>Acesso rápido</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-t"><i class="ti ti-arrows-exchange" aria-hidden="true"></i> Fluxo de uma sessão</div>
+    <div class="flow">
+      <div class="fstep"><div class="fstep-ico" style="background:#E1F5EE"><i class="ti ti-car" style="font-size:14px;color:#0F6E56" aria-hidden="true"></i></div><span>Chegada</span></div>
+      <div class="fline"></div>
+      <div class="fstep"><div class="fstep-ico" style="background:#E6F1FB"><i class="ti ti-scan" style="font-size:14px;color:#185FA5" aria-hidden="true"></i></div><span>Autenticação</span></div>
+      <div class="fline"></div>
+      <div class="fstep"><div class="fstep-ico" style="background:#EEEDFE"><i class="ti ti-brain" style="font-size:14px;color:#534AB7" aria-hidden="true"></i></div><span>IA agenda</span></div>
+      <div class="fline"></div>
+      <div class="fstep"><div class="fstep-ico" style="background:#FAEEDA"><i class="ti ti-bolt" style="font-size:14px;color:#854F0B" aria-hidden="true"></i></div><span>Carregando</span></div>
+      <div class="fline"></div>
+      <div class="fstep"><div class="fstep-ico" style="background:#E1F5EE"><i class="ti ti-receipt-2" style="font-size:14px;color:#0F6E56" aria-hidden="true"></i></div><span>Pagamento</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="t-kanban" class="sec">
+  <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:10px">Sprint 2 · ChargeGrid · Organização do projeto</div>
+  <div class="kanban">
+    <div class="cbk">
+      <div class="col-h">Backlog <span>4</span></div>
+      <div class="kcard">Integração API distribuidora<div><span class="tag t-it">Integração</span></div></div>
+      <div class="kcard">Notificações push<div><span class="tag t-ux">UX</span></div></div>
+      <div class="kcard">Relatório de CO₂ por usuário<div><span class="tag t-ia">IA</span></div></div>
+      <div class="kcard">Suporte V2G<div><span class="tag t-in">Infra</span></div></div>
+    </div>
+    <div class="cdo">
+      <div class="col-h">Em andamento <span>4</span></div>
+      <div class="kcard">Simulador de tarifas ToU<div><span class="tag t-pg">Pagamento</span></div></div>
+      <div class="kcard">Dashboard em tempo real<div><span class="tag t-in">Infra</span></div></div>
+      <div class="kcard">Smart charging por prioridade<div><span class="tag t-ia">IA</span></div></div>
+      <div class="kcard">Autenticação RFID + QR<div><span class="tag t-ux">UX</span></div></div>
+    </div>
+    <div class="crv">
+      <div class="col-h">Em revisão <span>3</span></div>
+      <div class="kcard">OCPP 2.0.1 básico<div><span class="tag t-it">Integração</span></div></div>
+      <div class="kcard">Pagamento PIX com QR<div><span class="tag t-pg">Pagamento</span></div></div>
+      <div class="kcard">Modelo de previsão ML<div><span class="tag t-ia">IA</span></div></div>
+    </div>
+    <div class="cdn">
+      <div class="col-h">Concluído <span>4</span></div>
+      <div class="kcard">Arquitetura do sistema<div><span class="tag t-in">Infra</span></div></div>
+      <div class="kcard">Requisitos Sprint 1<div><span class="tag t-ux">UX</span></div></div>
+      <div class="kcard">Mapeamento de protocolos<div><span class="tag t-it">Integração</span></div></div>
+      <div class="kcard">Estrutura de tarifação ToU<div><span class="tag t-pg">Pagamento</span></div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+function tab(id,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));
+  document.getElementById('t-'+id).classList.add('on');
+  btn.classList.add('on');
+}
+
+const demand=[40,35,30,45,80,110,130,125,145,190,160,90];
+const maxD=Math.max(...demand);
+const bar=document.getElementById('dbar');
+demand.forEach((v,i)=>{
+  const d=document.createElement('div');
+  d.className='db';
+  const h=Math.round((v/maxD)*90);
+  const col=v>170?'#E24B4A':v>120?'#BA7517':'#1D9E75';
+  d.style.cssText='height:'+h+'px;background:'+col;
+  bar.appendChild(d);
+});
+
+const tarifas=[{s:0,e:6,r:0.65},{s:6,e:12,r:0.82},{s:12,e:18,r:1.34},{s:18,e:22,r:1.10},{s:22,e:24,r:0.72}];
+let bat=20,meta=80,cap=60,hora=14;
+function getT(h){return tarifas.find(t=>h>=t.s&&h<t.e)||tarifas[0];}
+function calc(){
+  const inputs=document.querySelectorAll('#t-tarifa input[type=range]');
+  bat=+inputs[0].value; meta=+inputs[1].value; cap=+inputs[2].value; hora=+inputs[3].value;
+  document.getElementById('vb').textContent=bat+'%';
+  document.getElementById('vm').textContent=meta+'%';
+  document.getElementById('vc').textContent=cap+' kWh';
+  document.getElementById('vh').textContent=hora+'h';
+  const en=Math.max(0,(meta-bat)/100*cap);
+  const t=getT(hora);
+  const custo=en*t.r;
+  const min=Math.round(en/48*60);
+  document.getElementById('rcusto').textContent='R$ '+custo.toFixed(2);
+  document.getElementById('rdet').innerHTML=en.toFixed(1)+' kWh · R$ '+t.r.toFixed(2)+'/kWh<br>~'+min+' min no carregador 48 kW';
+  const melhor=tarifas.slice().sort((a,b)=>a.r-b.r)[0];
+  const ec=(en*(t.r-melhor.r)).toFixed(2);
+  const h2=document.getElementById('rhint');
+  if(t.r>melhor.r&&en>0){
+    h2.innerHTML='<i class="ti ti-bulb" aria-hidden="true"></i> IA sugere: carregue entre 00h–06h e economize R$ '+ec+'.';
+  } else {
+    h2.innerHTML='<i class="ti ti-circle-check" aria-hidden="true"></i> Ótimo horário! Você já está na tarifa mais baixa.';
+  }
+}
+calc();
+</script>

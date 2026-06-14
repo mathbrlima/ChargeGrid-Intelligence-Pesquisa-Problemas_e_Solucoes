@@ -1,0 +1,1 @@
+# ChargeGrid-Intelligence-Pesquisa-Problemas_e_Solu-es

@@ -108,7 +108,7 @@ Sistema de Pagamento
 ## Como Executar
 
 1. Baixe o arquivo do projeto.
-2. Abra o arquivo `chargegrid_dashboard`.
+2. Abra o arquivo `chargegrid_dashboard.html`.
 3. Utilize as abas do sistema para navegar pelas funcionalidades.
 4. Teste o simulador de tarifação e os recursos de gerenciamento de demanda.
 

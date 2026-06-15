@@ -97,8 +97,8 @@ Sistema de Pagamento
 
 ## Tecnologias Utilizadas
 
-* HTML5
-* CSS3
+* HTML
+* CSS
 * JavaScript
 * GitHub
 * Trello
